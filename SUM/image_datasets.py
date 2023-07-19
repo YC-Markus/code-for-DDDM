@@ -31,23 +31,13 @@ class diffCT_Dataset(Dataset):
     def __getitem__(self,index):
         out_dict = {}
 
-        if index < 3276 :
+        if index < (3276+3276) :
             x_nd = torch.unsqueeze(torch.tensor(np.load(self.sino_path + f'/full_C_parallel_sino/{index}.npy')).to(torch.float32),dim=0) - 1.
             # x_nd = torch.tensor(np.load(self.sino_path + f'/full_C_fan_sino/{index}.npy')).to(torch.float32)
             # out_dict["y"] = np.array(0, dtype=np.int64)
             
-        elif index < (3276+3276):
+        elif index < (3255+4154):
             x_nd = torch.unsqueeze(torch.tensor(np.load(self.sino_path + f'/full_L_parallel_sino/{index-3276}.npy')).to(torch.float32),dim=0) - 1.
-            # x_nd = torch.tensor(np.load(self.sino_path + f'/full_L_fan_sino/{index-3276}.npy')).to(torch.float32)
-            # out_dict["y"] = np.array(1, dtype=np.int64)
-            
-        elif index < (3276+3276+3255):
-            x_nd = torch.unsqueeze(torch.tensor(np.load('/root/autodl-tmp/TASK4/SINO_DATA/val_stage1' + f'/full_C_parallel_sino/{index-3276-3276}.npy')).to(torch.float32),dim=0) - 1.
-            # x_nd = torch.tensor(np.load(self.sino_path + f'/full_L_fan_sino/{index-3276}.npy')).to(torch.float32)
-            # out_dict["y"] = np.array(1, dtype=np.int64)
-            
-        elif index < (3276+3276+3255+4154):
-            x_nd = torch.unsqueeze(torch.tensor(np.load('/root/autodl-tmp/TASK4/SINO_DATA/val_stage1' + f'/full_L_parallel_sino/{index-3276-3276-3255}.npy')).to(torch.float32),dim=0) - 1.
             # x_nd = torch.tensor(np.load(self.sino_path + f'/full_L_fan_sino/{index-3276}.npy')).to(torch.float32)
             # out_dict["y"] = np.array(1, dtype=np.int64)
 
@@ -73,7 +63,6 @@ class diffCT_Dataset_val(Dataset):
         out_dict = {}
 
         choice1 = random.random()
-        choice1 = 0.2
         index = 100
         if choice1 < (1/3):
             x_nd = torch.unsqueeze(torch.tensor(np.load(self.sino_path + f'/full_C_parallel_sino/{index}.npy')).to(torch.float32),dim=0) - 1.
@@ -86,7 +75,6 @@ class diffCT_Dataset_val(Dataset):
         else:
             x_nd = torch.tensor(np.load(f'/root/autodl-tmp/TASK4/SINO_DATA/val_stage2/full_L/val_{index}.npy')).to(torch.float32)
             # out_dict["y"] = np.array(2, dtype=np.int64)
-
 
         return x_nd, out_dict
     
@@ -114,5 +102,4 @@ class trans_diffCT_Dataset(Dataset):
         # out_dict["y"] = np.array(1, dtype=np.int64)
         out_dict["index"] = index
             
-        
         return x_nd, out_dict
