@@ -101,7 +101,7 @@ python IRM/scripts/img_super_res_sample.py
 Or generate a large batch of samples like so:
 
 ```
-python IRM/scripts/img_multi_super_res.py
+python IRM/scripts/img_multi_sample.py
 ```
 
 Note that for IRM, strides IDDPM and DDIM are optional. We recommend to use DDIM and set parameter  `--timestep_respacing` to 2 as more timesteps may lead to unexpected faked details.
