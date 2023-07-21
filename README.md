@@ -1,6 +1,7 @@
 # Code for DDDM
 
 This is the code for paper *A Dual-domain Diffusion Model for Sparse-view CT Reconstruction*
+The pre-processing code and MATLAB fan2parallel code will be released later. 
 
 ## Installation SUM
 
